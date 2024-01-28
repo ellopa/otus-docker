@@ -236,11 +236,8 @@ document.getElementById("time").innerHTML = "Time: " + t;
 
 ### 6. Сборка ядра в контейнере.
  
-**Да, возможно.**
-Примеры сборки ядра в контейнере: 
-- ['1']((https://github.com/a13xp0p0v/kernel-build-containers)
-- ['2'](https://hub.docker.com/r/tomzo/buildkernel)
-- ['3'](https://github.com/tomzo/docker-kernel-ide)
+- **Да, возможно.**
+- Примеры сборки ядра в контейнере - ['1'](https://github.com/a13xp0p0v/kernel-build-containers), ['2'](https://hub.docker.com/r/tomzo/buildkernel), ['3'](https://github.com/tomzo/docker-kernel-ide)
 
 ## Загрузка образа в DockerHub 
 
