@@ -42,15 +42,15 @@ https://docs.docker.com/engine/install/ubuntu/
 ### Шаблон для работы с Dockerfile
 
 Что должно быть Dockerfile:
-
+```
 FROM image name
 RUN apt update -y && apt upgrade -y
 COPY или ADD filename /path/in/image
 EXPOSE portopenning
 CMD or ENTRYPOINT or both
-
-# не забываем про разницу между COPY и ADD
-# or - одна из опций на выбор
+```
+- **не забываем про разницу между COPY и ADD**
+- **or - одна из опций на выбор**
 
 ### 1/2. Установка Docker и Docker Compose на хост машину
 -[Инструкция](https://docs.docker.com/engine/install/ubuntu/)
@@ -75,7 +75,7 @@ for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker c
 ```
 >- apt-get может сообщить, что у вас не установлен ни один из этих пакетов.
 
->-Образы, контейнеры, тома и сети, хранящиеся в /var/lib/docker/, не удаляются автоматически при удалении Docker. Если вы хотите начать с чистой установки и предпочитаете очистить все существующие данные, прочтите раздел "Удаление Docker Engine".
+>- Образы, контейнеры, тома и сети, хранящиеся в /var/lib/docker/, не удаляются автоматически при удалении Docker. Если вы хотите начать с чистой установки и предпочитаете очистить все существующие данные, прочтите раздел "Удаление Docker Engine".
 
 - Установить Docker Engine из репозитория apt Docker.
 ```
@@ -176,7 +176,7 @@ elena_leb@ubuntunbleb:~/DOCKER_DZ$ sudo docker build -t ellopa/my-server-nginx .
 root@ubuntunbleb:~# docker run -it  -p 8081:80 --name cont_nginx_3 ellopa/my-server-nginx
 ```
 ```
-oot@ubuntunbleb:~# docker ps -a
+root@ubuntunbleb:~# docker ps -a
 CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS                      PORTS                                            NAMES
 56aa7d191925   ellopa/my-server-nginx   "nginx -g 'daemon of…"   About a minute ago   Up About a minute           443/tcp, 0.0.0.0:8081->80/tcp, :::8081->80/tcp   cont_nginx_3
 
@@ -187,13 +187,13 @@ root@ubuntunbleb:~# docker run -itd  -p 8081:80 --name cont_nginx_4 ellopa/my-se
 4beba65b94036ef479ae51dd8101b7a0b54de6026a81ebd6565fa971d205c9bb
 ```
 - Посмотреть  запущенные контейнеры. 
->- Поле PORTS в выходных данных сообщает, что порт 80 на хосте Docker сопоставлен с портом 80 в контейнере. Другой способ убедиться, что NGINX запущен, - это отправить HTTP-запрос на этот порт. Появится код страницы приветствия NGINX
-
 ```
 root@ubuntunbleb:~# docker ps
 CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS              PORTS                                            NAMES
 4beba65b9403   ellopa/my-server-nginx   "nginx -g 'daemon of…"   About a minute ago   Up About a minute   443/tcp, 0.0.0.0:8081->80/tcp, :::8081->80/tcp   cont_nginx_4
 ```
+>- Поле PORTS в выходных данных сообщает, что порт 80 на хосте Docker сопоставлен с портом 80 в контейнере. Другой способ убедиться, что NGINX запущен, - это отправить HTTP-запрос на этот порт. Появится код страницы приветствия NGINX
+
 ```
 root@ubuntunbleb:~# curl http://localhost
 <!DOCTYPE html>
@@ -224,9 +224,10 @@ document.getElementById("time").innerHTML = "Time: " + t;
 ```
 ![screenshot1](https://github.com/ellopa/otus-docker/blob/main/scr_1.png)
 
-- Отображается измененная страница. Cобран кастомный образ nginx на базе alpine [Dockerfile](https://github.com/ellopa/otus-docker/blob/main/Dockerfile). После запуска nginx отдает кастомную страницу из файла [index.html](https://github.com/ellopa/otus-docker/blob/main/index.html). Конфигурация nginx - [nginx.conf](https://github.com/ellopa/otus-docker/blob/main/nginx.conf). Файлы копируются в контейнер при сборке.  
+**Отображается измененная страница. Cобран кастомный образ nginx на базе alpine [Dockerfile](https://github.com/ellopa/otus-docker/blob/main/Dockerfile). После запуска nginx отдает кастомную страницу из файла [index.html](https://github.com/ellopa/otus-docker/blob/main/index.html). Конфигурация nginx - [nginx.conf](https://github.com/ellopa/otus-docker/blob/main/nginx.conf). Файлы копируются в контейнер при сборке.**  
 
 ### 4. Определите разницу между контейнером и образом
+
 - Docker контейнер — это самодостаточная и изолированная среда, содержащая все необходимое для работы приложения. Он представляет собой легковесный пакет, который включает в себя код приложения, утилиты, зависимости и всю другую необходимую систему для его работы.
 В отличие от традиционных виртуальных машин, Docker контейнеры не имитируют полноценное аппаратное обеспечение, а вместо этого используют общую операционную систему с хост-машиной. Docker контейнеры используют контейнеризацию на уровне ОС (такую как LXC или libcontainer), что позволяет им быть легковесными и запускаться очень быстро.
 Контейнеры создаются из образов с помощью команды `docker run`. Команда `docker run` берет Docker образ в качестве темплейта и создает из него контейнер, который и запускается.
@@ -237,9 +238,9 @@ document.getElementById("time").innerHTML = "Time: " + t;
 ### 6. Сборка ядра в контейнере.
 Возможна. 
 - Да, возможно. Примеры сборки ядра в контейнере: 
-[ - ]((https://github.com/a13xp0p0v/kernel-build-containers),
-[ - ](https://hub.docker.com/r/tomzo/buildkernel),
-[ - ](https://github.com/tomzo/docker-kernel-ide).
+[ 1 ]((https://github.com/a13xp0p0v/kernel-build-containers)
+[ 2 ](https://hub.docker.com/r/tomzo/buildkernel)
+[ 3 ](https://github.com/tomzo/docker-kernel-ide)
 
 ## Загрузка образа в DockerHub 
 
@@ -250,7 +251,7 @@ lena_leb@ubuntunbleb:~$ sudo docker images
 REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
 ellopa/my-server-nginx   latest    4fa8208ac64c   4 days ago     9.04MB
 ```
->- В названии образа сразу было добавлено название репозитория Docker Hub. Если создан локальный, то можно создать тэг для него  **docker tag 0e5574283393 fedora/httpd:version1.0** - пометит локальный образ с идентификатором 0e5574283393 как fedora/httpd с тегом version1.0:  
+>- В названии образа сразу было добавлено название репозитория Docker Hub. Если создан локальный, то можно создать тэг для него , например **docker tag 0e5574283393 fedora/httpd:version1.0** - пометит локальный образ с идентификатором 0e5574283393 как fedora/httpd с тегом version1.0:  
 
 - Залогинится на Dcker Hub и выполнить пуш - docker push ellopa/my-server-nginx:latest
 ```
