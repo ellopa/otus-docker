@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+
+</head>
+<body>
+
+    <div align="center">
+        <font color="green">
+          Hello from Nginx on Alpine container
+          <p id="date"></p>
+          <p id="time"></p>
+        </font>
+      </div>
+<script>
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+t = n.toLocaleTimeString();
+document.getElementById("date").innerHTML = "Date: " + m + "/" + d + "/" + y;
+document.getElementById("time").innerHTML = "Time: " + t;
+</script>
+</body>
