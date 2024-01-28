@@ -65,11 +65,10 @@ Release:	22.04
 Codename:	jammy
 elena_leb@ubuntunbleb:~/SELinux_DZ$ uname -m
 ```
-- Удалить старые версии ( первая установка, не требуется)
+- Удалить старые версии ( первая установка, не требуется).
+>- Docker Engine зависит от контейнеров и запуска. Docker Engine объединяет эти зависимости в один пакет: contained.io. Если ранее устанавливали контейнеры или запускали, то  удалить их, чтобы избежать конфликтов с версиями, поставляемыми с Docker Engine.
 
-- Docker Engine зависит от контейнеров и запуска. Docker Engine объединяет эти зависимости в один пакет: contained.io. Если ранее устанавливали контейнеры или запускали, то  удалить их, чтобы избежать конфликтов с версиями, поставляемыми с Docker Engine.
-
-- Запустить следующую команду, чтобы удалить все конфликтующие пакеты:
+- Запустить следующую команду, чтобы удалить все конфликтующие пакеты.
 ```
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 ```
@@ -192,7 +191,7 @@ root@ubuntunbleb:~# docker ps
 CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS              PORTS                                            NAMES
 4beba65b9403   ellopa/my-server-nginx   "nginx -g 'daemon of…"   About a minute ago   Up About a minute   443/tcp, 0.0.0.0:8081->80/tcp, :::8081->80/tcp   cont_nginx_4
 ```
->- Поле PORTS в выходных данных сообщает, что порт 80 на хосте Docker сопоставлен с портом 80 в контейнере. Другой способ убедиться, что NGINX запущен, - это отправить HTTP-запрос на этот порт. Появится код страницы приветствия NGINX
+**Поле PORTS в выходных данных сообщает, что порт 80 на хосте Docker сопоставлен с портом 80 в контейнере. Другой способ убедиться, что NGINX запущен, - это отправить HTTP-запрос на этот порт. Появится код страницы приветствия NGINX**
 
 ```
 root@ubuntunbleb:~# curl http://localhost
@@ -236,11 +235,12 @@ document.getElementById("time").innerHTML = "Time: " + t;
 Образы создаются из Dockerfile с помощью команды `docker build`.
 
 ### 6. Сборка ядра в контейнере.
-Возможна. 
-- Да, возможно. Примеры сборки ядра в контейнере: 
-[ 1 ]((https://github.com/a13xp0p0v/kernel-build-containers)
-[ 2 ](https://hub.docker.com/r/tomzo/buildkernel)
-[ 3 ](https://github.com/tomzo/docker-kernel-ide)
+ 
+**Да, возможно.**
+Примеры сборки ядра в контейнере: 
+- ['1']((https://github.com/a13xp0p0v/kernel-build-containers)
+- ['2'](https://hub.docker.com/r/tomzo/buildkernel)
+- ['3'](https://github.com/tomzo/docker-kernel-ide)
 
 ## Загрузка образа в DockerHub 
 
